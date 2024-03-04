@@ -1,5 +1,5 @@
-import { User } from '@app/shared/lib/entities';
-import { Injectable } from '@nestjs/common';
+import { User } from "@app/shared/lib/entities";
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class UsersRepository {

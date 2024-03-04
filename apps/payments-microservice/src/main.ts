@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
-import { PaymentsMicroserviceModule } from './payments-microservice.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { NestFactory } from "@nestjs/core";
+import { PaymentsMicroserviceModule } from "./payments-microservice.module";
+import { MicroserviceOptions, Transport } from "@nestjs/microservices";
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -9,10 +9,10 @@ async function bootstrap() {
       transport: Transport.KAFKA,
       options: {
         client: {
-          brokers: ['localhost:9092'],
+          brokers: ["localhost:9092"],
         },
         consumer: {
-          groupId: 'payment-consumer',
+          groupId: "payment-consumer",
         },
       },
     },

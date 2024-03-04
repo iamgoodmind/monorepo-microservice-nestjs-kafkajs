@@ -1,7 +1,7 @@
-import { Controller, ParseIntPipe, ValidationPipe } from '@nestjs/common';
-import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
-import { AuthMicroserviceService } from './auth-microservice.service';
-import { CreateUserDto } from '@app/shared/lib/dto';
+import { Controller, ParseIntPipe, ValidationPipe } from "@nestjs/common";
+import { EventPattern, MessagePattern, Payload } from "@nestjs/microservices";
+import { AuthMicroserviceService } from "./auth-microservice.service";
+import { CreateUserDto } from "@app/shared/lib/dto";
 
 @Controller()
 export class AuthMicroserviceController {
@@ -9,13 +9,14 @@ export class AuthMicroserviceController {
     private readonly authMicroserviceService: AuthMicroserviceService,
   ) {}
 
-  @EventPattern('create_user')
+  @EventPattern("create_user")
   handleUserCreate(@Payload(ValidationPipe) data: CreateUserDto) {
+    console.log("inside auth microservice", data);
     this.authMicroserviceService.createUser(data);
   }
 
-  @MessagePattern('get_user')
-  handleGetUser(@Payload('userId', ParseIntPipe) userId: number) {
+  @MessagePattern("get_user")
+  handleGetUser(@Payload("userId", ParseIntPipe) userId: number) {
     return this.authMicroserviceService.getUser(userId);
   }
 }
